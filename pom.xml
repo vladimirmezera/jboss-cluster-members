@@ -2,12 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>monitor-batch</artifactId>
-        <groupId>cz.cetin.monitoring</groupId>
-        <version>1.0-SNAPSHOT</version>
-        <relativePath>../../cetin/icinga/monitoring/monitor/monitor-batch/pom.xml</relativePath>
-    </parent>
+
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>cz.meza.jboss.cluster</groupId>
@@ -32,15 +27,35 @@
                 <artifactId>jboss-as-remoting</artifactId>
                 <version>7.4.0.Final-redhat-19</version>
             </dependency>
+
+            <dependency>
+                <groupId>org.jboss.remotingjmx</groupId>
+                <artifactId>remoting-jmx</artifactId>
+                <version>2.0.1.Final</version>
+            </dependency>
+
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.12</version>
+                <scope>test</scope>
+            </dependency>
         </dependencies>
+
     </dependencyManagement>
 
     <dependencies>
+
         <dependency>
             <groupId>org.jboss.remotingjmx</groupId>
             <artifactId>remoting-jmx</artifactId>
-            <version>2.0.1.Final</version>
         </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>
