@@ -12,6 +12,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import javax.management.MBeanServerConnection;
+import javax.management.ObjectName;
 import javax.management.remote.JMXConnector;
 import javax.management.remote.JMXServiceURL;
 import java.util.HashMap;
@@ -26,7 +27,7 @@ public class JmxTest {
     @Deployment
     public static WebArchive createTestArchive() {
         return ShrinkWrap.create(WebArchive.class, "test-1.war").addClass(JmxCluster.class)
-                .addAsWebInfResource("web.xml", "web.xml");
+                .setWebXML("web.xml");
     }
 
 
@@ -41,7 +42,11 @@ public class JmxTest {
             connector.connect();
             MBeanServerConnection mbeanConn = connector.getMBeanServerConnection();
             Assert.assertTrue(mbeanConn.getMBeanCount() > 0);
+            Thread.sleep(30000);
+            mbeanConn.getAttribute(ObjectName.getInstance("jgroups:type=channel,cluster=\"web\""), "View");
+
         } catch (Exception e) {
+            e.printStackTrace();
             Assert.assertTrue(false);
         }
         Assert.assertTrue(true);
