@@ -9,7 +9,7 @@
     <container qualifier="widlfly-managed" default="true">
         <configuration>
             <property name="jbossHome">target/wildfly-10.1.0.Final/</property>
-            <property name="javaVmArguments">-Djboss.socket.binding.port-offset=0</property>
+            <property name="javaVmArguments">-Djboss.socket.binding.port-offset=0 -Djava.net.preferIPv4Stack=true</property>
             <property name="serverConfig">standalone-ha.xml</property>
             <property name="managementPort">9990</property>
         </configuration>

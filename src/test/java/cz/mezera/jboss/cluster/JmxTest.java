@@ -22,7 +22,7 @@ import java.util.Map;
 public class JmxTest {
 
     private static final String URL = "service:jmx:http-remoting-jmx://localhost:9990";
-
+    private static final String CHANNEL = "ee";
 
     @Deployment
     public static WebArchive createTestArchive() {
@@ -42,8 +42,8 @@ public class JmxTest {
             connector.connect();
             MBeanServerConnection mbeanConn = connector.getMBeanServerConnection();
             Assert.assertTrue(mbeanConn.getMBeanCount() > 0);
-            Thread.sleep(30000);
-            mbeanConn.getAttribute(ObjectName.getInstance("jgroups:type=channel,cluster=\"web\""), "View");
+            Thread.sleep(3000);
+            mbeanConn.getAttribute(ObjectName.getInstance("jgroups:type=channel,cluster=\"" + CHANNEL + "\""), "View");
 
         } catch (Exception e) {
             e.printStackTrace();
