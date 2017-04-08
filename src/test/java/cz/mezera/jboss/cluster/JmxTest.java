@@ -23,6 +23,8 @@ public class JmxTest {
 
     private static final String URL = "service:jmx:http-remoting-jmx://localhost:9990";
     private static final String CHANNEL = "ee";
+    private static final String WILDFLY_JMX_URL = "jgroups:type=channel,cluster=\"" + CHANNEL + "\"";
+    private static final String WIDLFY_JMX_CLUSTER_ATTR = "view";
 
     @Deployment
     public static WebArchive createTestArchive() {
@@ -43,7 +45,8 @@ public class JmxTest {
             MBeanServerConnection mbeanConn = connector.getMBeanServerConnection();
             Assert.assertTrue(mbeanConn.getMBeanCount() > 0);
             Thread.sleep(3000);
-            mbeanConn.getAttribute(ObjectName.getInstance("jgroups:type=channel,cluster=\"" + CHANNEL + "\""), "View");
+            Object attr = mbeanConn.getAttribute(ObjectName.getInstance(WILDFLY_JMX_URL), WIDLFY_JMX_CLUSTER_ATTR);
+            Assert.assertNotNull(attr);
 
         } catch (Exception e) {
             e.printStackTrace();
