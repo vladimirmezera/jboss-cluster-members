@@ -39,6 +39,7 @@ public class JmxClusterTest {
             JMXConnector connector = s.newJMXConnector(serviceUrl, env);
             connector.connect();
             MBeanServerConnection mbeanConn = connector.getMBeanServerConnection();
+            Assert.assertTrue(mbeanConn.getMBeanCount() > 0);
         } catch (Exception e) {
             Assert.assertTrue(false);
         }
