@@ -1,5 +1,6 @@
 package cz.mezera.jboss.cluster;
 
+import cz.meza.jboss.cluster.JmxCluster;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
@@ -24,7 +25,8 @@ public class JmxClusterTest {
 
     @Deployment
     public static WebArchive createJavaTestArchive() {
-        return ShrinkWrap.create(WebArchive.class, "test-1.war").addAsWebInfResource("web.xml", "web.xml");
+        return ShrinkWrap.create(WebArchive.class, "test-1.war").addClass(JmxCluster.class)
+                .addAsWebInfResource("web.xml", "web.xml");
     }
 
     @RunAsClient
