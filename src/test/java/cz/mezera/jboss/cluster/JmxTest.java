@@ -18,16 +18,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RunWith(Arquillian.class)
-public class JmxClusterTest {
+public class JmxTest {
 
     private static final String URL = "service:jmx:http-remoting-jmx://localhost:9990";
 
 
     @Deployment
-    public static WebArchive createJavaTestArchive() {
+    public static WebArchive createTestArchive() {
         return ShrinkWrap.create(WebArchive.class, "test-1.war").addClass(JmxCluster.class)
                 .addAsWebInfResource("web.xml", "web.xml");
     }
+
 
     @RunAsClient
     @Test
