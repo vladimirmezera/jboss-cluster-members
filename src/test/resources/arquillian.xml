@@ -17,10 +17,10 @@
 
     <container qualifier="jboss-managed">
         <configuration>
-            <property name="jbossHome">target/jboss-eap/</property>
+            <property name="jbossHome">target/jboss-eap-6.4/</property>
             <property name="javaVmArguments">-Djboss.socket.binding.port-offset=0 -Djava.net.preferIPv4Stack=true</property>
             <property name="serverConfig">standalone-ha.xml</property>
-            <property name="managementPort">9990</property>
+            <property name="managementPort">9999</property>
         </configuration>
     </container>
 
