@@ -6,7 +6,7 @@
 
 
 
-    <container qualifier="widlfly-managed" default="true">
+    <container qualifier="wildfly-managed" default="true">
         <configuration>
             <property name="jbossHome">target/wildfly-10.1.0.Final/</property>
             <property name="javaVmArguments">-Djboss.socket.binding.port-offset=0 -Djava.net.preferIPv4Stack=true</property>
@@ -15,30 +15,13 @@
         </configuration>
     </container>
 
-<!--   &lt;!&ndash; start two JBoss AS nodes with HA configuration &ndash;&gt;
-   <group qualifier="jboss-cluster" >
+    <container qualifier="jboss-managed">
+        <configuration>
+            <property name="jbossHome">target/jboss-eap/</property>
+            <property name="javaVmArguments">-Djboss.socket.binding.port-offset=0 -Djava.net.preferIPv4Stack=true</property>
+            <property name="serverConfig">standalone-ha.xml</property>
+            <property name="managementPort">9990</property>
+        </configuration>
+    </container>
 
-        &lt;!&ndash;
-        node 1 config:
-        ./standalone.sh -c standalone-ha.xml -Djboss.node.name=node-a -Djboss.server.data.dir=<JBOSS_HOME>/standalone/data1
-        &ndash;&gt;
-        <container qualifier="container-1" >
-            <configuration>
-                <property name="managementAddress">127.0.0.1</property>
-                <property name="managementPort">9999</property>
-            </configuration>
-        </container>
-
-        &lt;!&ndash;
-        node 2 config:
-         - use port offset 100
-         ./standalone.sh -c standalone-ha.xml -Djboss.node.name=node-b -Djboss.server.data.dir=<JBOSS_HOME>/standalone/data2 -Djboss.socket.binding.port-offset=100
-        &ndash;&gt;
-        <container qualifier="container-2">
-            <configuration>
-                <property name="managementAddress">127.0.0.1</property>
-                <property name="managementPort">10099</property>
-            </configuration>
-        </container>
-    </group>-->
 </arquillian>
