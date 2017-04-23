@@ -2,9 +2,7 @@ package cz.mezera.jboss.cluster;
 
 import cz.meza.jboss.cluster.JmxCluster;
 import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.container.test.api.OperateOnDeployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
-import org.jboss.arquillian.container.test.api.TargetsContainer;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.remotingjmx.RemotingConnectorProvider;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -23,7 +21,7 @@ import java.util.Map;
 @RunWith(Arquillian.class)
 public class JmxTest {
 
-    private static final String URL = "service:jmx:http-remoting-jmx://localhost:9990";
+    private static final String URL = "service:jmx:remote+http://localhost:9990";
     private static final String CHANNEL = "ee";
     private static final String WILDFLY_JMX_URL = "jgroups:type=channel,cluster=\"" + CHANNEL + "\"";
     private static final String WIDLFY_JMX_CLUSTER_ATTR = "view";
